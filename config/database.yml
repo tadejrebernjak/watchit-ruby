@@ -1,0 +1,28 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: watchit_development
+  
+  username: postgres
+  password: tadej123
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: watchit_test
+
+  username: postgres
+  password: tadej123
+  host: localhost
+  port: 5432
+
+production:
+  <<: *default
+  database: watchit_production
+  username: watchit
+  password: <%= ENV['WATCHIT_DATABASE_PASSWORD'] %>
