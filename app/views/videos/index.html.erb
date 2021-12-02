@@ -1,35 +1,24 @@
-<h1>Videos</h1>
+<h1 class="text-center mb-5">Home</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Thumbnail</th>
-      <th>File</th>
-      <th>Uploader</th>
-      <th>Views</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row mb-3">
 
-  <tbody>
-    <% @videos.each do |video| %>
-      <tr>
-        <td><%= video.title %></td>
-        <td><%= video.description %></td>
-        <td><%= video.thumbnail %></td>
-        <td><%= video.file %></td>
-        <td><%= video.user.email %></td>
-        <td><%= video.views %></td>
-        <td><%= link_to 'Show', video %></td>
-        <td><%= link_to 'Edit', edit_video_path(video) %></td>
-        <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @videos.each do |video| %>
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        <%= image_pack_tag('no-thumbnail.jpg', class: 'card-img-top') %>
+        <div class="card-body">
+          <%= link_to video do %>
+          <h3 class="card-title"><%= video.title %></h5>
+          <% end %>
+            <h5>By: <%= video.user.email %> </h5>
+          <p><%= video.description.truncate(55, separator: /\s/) %></p>
+        </div>
+        <div class="card-footer">
+          <p><%= video.views %> views</p>
+          <p>Uploaded <%= video.created_at.strftime('%d.%m.%Y') %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
-<br>
-
-<%= link_to 'New Video', new_video_path %>
+</div>
