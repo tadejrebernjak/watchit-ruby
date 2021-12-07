@@ -8,6 +8,10 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
     </div>
     <div class="form-group">
+      <%= f.label :username, class: 'col-form-label-lg' %><br />
+      <%= f.text_field :username, autocomplete: "username", class: "form-control form-control-lg" %>
+    </div>
+    <div class="form-group">
       <%= f.label :password, class: 'col-form-label-lg' %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>

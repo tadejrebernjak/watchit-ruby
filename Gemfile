@@ -31,6 +31,12 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Authentication
 gem 'devise'
 
+# Comments
+gem 'commontator'
+
+# Comments voting
+gem 'acts_as_votable'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

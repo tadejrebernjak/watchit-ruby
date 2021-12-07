@@ -10,7 +10,7 @@
           <%= link_to video do %>
           <h3 class="card-title"><%= video.title %></h5>
           <% end %>
-            <h5>By: <%= video.user.email %> </h5>
+            <h5>By: <%= video.user.username || 'Anonymous' %> </h5>
           <p><%= video.description.truncate(55, separator: /\s/) %></p>
         </div>
         <div class="card-footer">

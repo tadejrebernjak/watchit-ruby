@@ -1,32 +1,22 @@
-<p>
-  <strong>Title:</strong>
-  <%= @video.title %>
-</p>
+<video class="video-fluid z-depth-1 w-100" loop controls>
+  <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
+</video>
+<div class="row">
+  <div class="col">
+    <h1><%= @video.title %></h1>
+    <h5 class="text-secondary"><%= @video.views %> views - <%= @video.created_at.strftime('%d.%m.%Y') %></h5>
+  </div>
+  <div class="col">
+  
+  </div>
+</div>
+<hr>
+<div>
+  <h4>Description</h4>
+  <p><%= @video.description %></p>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @video.description %>
-</p>
-
-<p>
-  <strong>Thumbnail:</strong>
-  <%= @video.thumbnail %>
-</p>
-
-<p>
-  <strong>File:</strong>
-  <%= @video.file %>
-</p>
-
-<p>
-  <strong>Uploader:</strong>
-  <%= @video.user.email %>
-</p>
-
-<p>
-  <strong>Views:</strong>
-  <%= @video.views %>
-</p>
+<%= commontator_thread(@video) %>
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
