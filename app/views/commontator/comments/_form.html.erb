@@ -28,15 +28,15 @@
   <%= form.hidden_field :parent_id %>
 
   <% unless comment.parent.nil? %>
-    <div class="replying">
+    <div class="replying pl-3">
       <%= t('commontator.comment.status.replying',
             creator_name: Commontator.commontator_name(comment.parent.creator)) %>
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field p-3">
     <%=
-      form.text_area :body, rows: '7', id: new_record ?
+      form.text_area :body, rows: '4', class: 'form-control', id: new_record ?
         comment.parent.nil? ? "commontator-thread-#{@commontator_thread.id}-new-comment-body" :
                               "commontator-comment-#{comment.parent.id}-reply" :
         "commontator-comment-#{comment.id}-edit-body"
@@ -44,11 +44,11 @@
     <%= javascript_tag('Commontator.initMentions();') if config.mentions_enabled %>
   </div>
 
-  <div class="submit">
-    <%= form.submit t("commontator.comment.actions.#{new_record ? 'create' : 'update'}") %>
+  <div class="submit ml-3 mb-3">
+    <%= form.submit t("commontator.comment.actions.#{new_record ? 'create' : 'update'}"), class: 'btn btn-primary' %>
     <%=
       form.submit(
-        t('commontator.comment.actions.cancel'), name: 'cancel'
+        t('commontator.comment.actions.cancel'), name: 'cancel', class: 'btn btn-danger'
       ) unless config.new_comment_style == :t && new_record && comment.parent.nil?
     %>
   </div>

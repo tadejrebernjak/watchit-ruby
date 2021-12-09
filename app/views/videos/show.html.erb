@@ -18,5 +18,6 @@
 
 <%= commontator_thread(@video) %>
 
-<%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %>
+<div class="mt-2">
+  <%= display_show_video_links(@video) %>
+</div>
