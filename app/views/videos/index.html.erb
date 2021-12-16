@@ -3,19 +3,20 @@
 <div class="row mb-3">
 
   <% @videos.each do |video| %>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-4">
       <div class="card">
-        <%= image_pack_tag('no-thumbnail.jpg', class: 'card-img-top') %>
+        <%= link_to video do %>
+          <%= image_pack_tag('no-thumbnail.jpg', class: 'card-img-top') %>
+        <% end %>
         <div class="card-body">
           <%= link_to video do %>
           <h3 class="card-title"><%= video.title %></h5>
           <% end %>
-            <h5>By: <%= video.user.username || 'Anonymous' %> </h5>
-          <p><%= video.description.truncate(55, separator: /\s/) %></p>
+          <h5>By: <%= video.user.username || 'Anonymous' %> </h5>
+          <!--<p><%= video.description.truncate(55, separator: /\s/) %></p>-->
         </div>
         <div class="card-footer">
-          <p><%= video.views %> views</p>
-          <p>Uploaded <%= time_ago_in_words(video.created_at) %> ago</p>
+          <p class="mb-0"><%= video.views %> views - <%= time_ago_in_words(video.created_at) %> ago</p>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ class CreateVideos < ActiveRecord::Migration[6.1]
       t.text :description
       t.string :thumbnail
       t.string :file
-      t.integer :views
+      t.integer :views, :default => 0
 
       t.timestamps
     end

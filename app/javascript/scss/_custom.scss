@@ -1,3 +1,16 @@
+body {
+    position: relative;
+    padding-bottom: 250px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 200px;
+    width: 100%;
+    background-color: #40464d;
+}
+
 .header-links > a {
     font-size: 1.3rem;
 }
@@ -12,4 +25,8 @@
 
 .form-container {
     min-width: 500px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
