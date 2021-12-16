@@ -78,7 +78,7 @@
       <span id="commontator-comment-<%= comment.id %>-reply-link" class="reply">
         <%=
           link_to(
-            t('commontator.comment.actions.reply'),
+            "Reply",
             commontator.new_thread_comment_path(thread, comment: { parent_id: comment.id }),
             remote: true
           ) if thread.config.comment_reply_style != :n && !thread.is_closed?
@@ -89,7 +89,7 @@
   </div>
 </div>
 
-<div id="commontator-comment-<%= comment.id %>-children" class="children m-4">
+<div id="commontator-comment-<%= comment.id %>-children" class="children ml-5 mr-2">
   <% if thread.config.comment_order == :l %>
     <div id="commontator-comment-<%= comment.id %>-reply" class="reply"></div>
   <% end %>
