@@ -12,11 +12,14 @@
           <%= link_to video do %>
           <h3 class="card-title"><%= video.title %></h5>
           <% end %>
-          <h5>By: <%= video.user.username || 'Anonymous' %> </h5>
+          <div class="d-flex align-items-center">
+            <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
+            <h5 class="d-inline ml-2 mb-0"><%= video.user.username || 'Anonymous' %> </h5>
+          </div>
           <!--<p><%= video.description.truncate(55, separator: /\s/) %></p>-->
         </div>
         <div class="card-footer">
-          <p class="mb-0"><%= video.views %> views - <%= time_ago_in_words(video.created_at) %> ago</p>
+          <p class="mb-0"><%= video.views %> views | <%= time_ago_in_words(video.created_at) %> ago</p>
         </div>
       </div>
     </div>
