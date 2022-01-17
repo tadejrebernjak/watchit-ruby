@@ -6,6 +6,26 @@ class VideosController < ApplicationController
     @videos = Video.all
   end
 
+  def upvote
+    @video = Video.find(params[:id])
+    if current_user.voted_up_on? @video
+      @video.unvote_by current_user
+    else
+      @video.upvote_by current_user
+    end
+    render "vote.js.erb"
+  end
+
+  def downvote
+    @video = Video.find(params[:id])
+    if current_user.voted_down_on? @video
+      @video.unvote_by current_user
+    else
+      @video.downvote_by current_user
+    end
+    render "vote.js.erb"
+  end
+
   # GET /videos/1 or /videos/1.json
   def show
     commontator_thread_show(@video)
@@ -67,6 +87,6 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title, :description, :thumbnail, :file, :views)
+      params.require(:video).permit(:title, :description, :thumbnail, :videoFile, :views)
     end
 end

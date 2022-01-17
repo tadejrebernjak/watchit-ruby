@@ -1,13 +1,22 @@
-<video class="video-fluid z-depth-1 w-100" loop controls>
-  <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
+<video class="video-fluid z-depth-1 w-100 video-max-height" loop controls>
+  <source src="<%= rails_blob_url(@video.videoFile) %>" type="<%= @video.videoFile.content_type %>" />
 </video>
 <div class="row">
-  <div class="col">
+  <div class="col-8">
     <h1><%= @video.title %></h1>
     <h5 class="text-secondary"><%= @video.views %> views - <%= @video.created_at.strftime('%d.%m.%Y') %></h5>
   </div>
-  <div class="col">
-  
+  <div class="col d-flex justify-content-center align-items-center">
+    <div class="d-inline votes-container">
+      <div class="text-center d-inline mx-2 upvotes-container">
+        <%= render "videos/upvote_link", video: @video %>
+        <%= render "videos/upvotes_count", video: @video %>
+      </div>
+      <div class="text-center d-inline mx-2 downvotes-container">
+        <%= render "videos/downvote_link", video: @video %>
+        <%= render "videos/downvotes_count", video: @video %>
+      </div>
+    </div>
   </div>
 </div>
 <hr>

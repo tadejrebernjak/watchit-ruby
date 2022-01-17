@@ -1,0 +1,9 @@
+<%= content_tag "div", class: "d-inline", id: "upvote-#{video.id}" do %>
+  <%= link_to upvote_video_path(video), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
+    <% if current_user.voted_up_on? video %>
+      <i class="fas fa-thumbs-up"></i>
+    <% else %>
+      <i class="far fa-thumbs-up"></i>
+    <% end %>
+  <% end %>
+<% end %>

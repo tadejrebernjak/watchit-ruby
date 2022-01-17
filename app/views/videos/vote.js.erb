@@ -1,0 +1,4 @@
+document.getElementById("upvote-<%= @video.id %>").innerHTML = "<%= j render "videos/upvote_link", video: @video %>";
+document.getElementById("upvotes-count-<%= @video.id %>").innerHTML = "<%= j render "videos/upvotes_count", video: @video %>";
+document.getElementById("downvote-<%= @video.id %>").innerHTML = "<%= j render "videos/downvote_link", video: @video %>";
+document.getElementById("downvotes-count-<%= @video.id %>").innerHTML = "<%= j render "videos/downvotes_count", video: @video %>";

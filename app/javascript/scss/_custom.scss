@@ -49,3 +49,23 @@ footer {
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
+
+.video-max-height {
+  max-height: 600px;
+}
+
+.votes-container {
+  font-size: 2rem;
+}
+
+.upvotes-container * {
+  color: rgb(0, 226, 0);
+}
+
+.downvotes-container * {
+  color: red;
+}
+
+.votes-container a:hover {
+  text-decoration: none;
+}

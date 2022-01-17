@@ -1,6 +1,10 @@
 <div class="form-container card p-5 m-auto w-75">
   <div class="text-center"> 
-    <%= image_pack_tag('default-pfp.jpg', class: 'pfp-large mb-4', id: 'pfp-preview') %>
+    <% if current_user.pfp.attached? %>
+      <%= image_tag(current_user.pfp, class: 'pfp-large mb-4', id: 'pfp-preview') %>
+    <% else %>
+      <%= image_pack_tag('default-pfp.jpg', class: 'pfp-large mb-4', id: 'pfp-preview') %>
+    <% end %>
     <h1><%= current_user.username %></h1>
   </div>
 
@@ -21,9 +25,13 @@
       <%= f.text_field :username, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
     </div>
 
-    <div class="form-group custom-file">
-      <%= f.file_field :pfp, class: "custom-file-input", id: "pfpFile" %>
-      <label class="custom-file-label" for="pfpFile">Choose profile picture </label>
+    <div class="form-group">
+      <%= f.label :pfp, class: 'col-form-label-lg' %>
+      <br>
+      <div class="form-group custom-file">
+        <%= f.file_field :pfp, class: "custom-file-input", id: "pfpFile" %>
+        <label class="custom-file-label" for="pfpFile">Choose profile picture </label>
+      </div>
     </div>
 
     <div class="form-group">
