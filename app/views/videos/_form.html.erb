@@ -12,15 +12,16 @@
       </div>
     <% end %>
 
-
-  <div class="form-group">
-      <%= form.label :videoFile, class: 'col-form-label-lg' %>
-      <br>
-    <div class="custom-file mb-3">
-      <%= form.file_field :videoFile, class: "custom-file-input" %>
-      <label class="custom-file-label" for="customFile">Choose video file</label>
+  <% if edit == false then %>
+    <div class="form-group">
+        <%= form.label :videoFile, class: 'col-form-label-lg' %>
+        <br>
+      <div class="custom-file mb-3">
+        <%= form.file_field :videoFile, class: "custom-file-input" %>
+        <label class="custom-file-label" for="customFile">Choose video file</label>
+      </div>
     </div>
-  </div>
+  <% end %>
 
     
 

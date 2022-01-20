@@ -9,6 +9,14 @@ body {
   background-color: #3d454c !important;
 }
 
+@media screen and (min-width: 1000) {
+  .head-content {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+  }
+}
+
 header,
 .search-bar-container {
   width: 100vw;
@@ -146,7 +154,7 @@ footer {
 }
 
 .video-preview-overlay:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
   opacity: 100;
 }
 

@@ -17,13 +17,13 @@
   </div>
   <div class="card-footer p-2 pt-4 row align-content-center text-center">
     <div class="col">
-      <button class="btn btn-outline-success px-5 py-2 my-2 larger-button" id="homeBtn" onclick="changeTab('home')">HOME</button>
+      <button class="btn btn-outline-primary px-5 py-2 my-2 larger-button" id="homeBtn" onclick="changeTab('home')">HOME</button>
     </div>
     <div class="col">
-      <button class="btn btn-outline-primary px-5 py-2 my-2 larger-button" id="videosBtn" onclick="changeTab('videos')">VIDEOS</button>
+      <button class="btn btn-outline-light px-5 py-2 my-2 larger-button" id="videosBtn" onclick="changeTab('videos')">VIDEOS</button>
     </div>
     <div class="col">
-      <button class="btn btn-outline-primary px-5 py-2 my-2 larger-button" id="channelsBtn" onclick="changeTab('channels')">CHANNELS</button>
+      <button class="btn btn-outline-light px-5 py-2 my-2 larger-button" id="channelsBtn" onclick="changeTab('channels')">CHANNELS</button>
     </div>
   </div>
 </div>
@@ -56,8 +56,8 @@
     for (let i = 0; i < navButtons.length; i++) {
       const button = navButtons[i];
       
+      button.classList.remove("btn-outline-light");
       button.classList.remove("btn-outline-primary");
-      button.classList.remove("btn-outline-success");
     }
 
     switch (path) {
@@ -66,9 +66,9 @@
         videos.style.display = "none";
         channels.style.display = "none";
 
-        homeBtn.classList.add("btn-outline-success");
-        videosBtn.classList.add("btn-outline-primary");
-        channelsBtn.classList.add("btn-outline-primary");
+        homeBtn.classList.add("btn-outline-primary");
+        videosBtn.classList.add("btn-outline-light");
+        channelsBtn.classList.add("btn-outline-light");
         break;
 
       case "videos":
@@ -76,9 +76,9 @@
         videos.style.display = "block";
         channels.style.display = "none";
 
-        homeBtn.classList.add("btn-outline-primary");
-        videosBtn.classList.add("btn-outline-success");
-        channelsBtn.classList.add("btn-outline-primary");
+        homeBtn.classList.add("btn-outline-light");
+        videosBtn.classList.add("btn-outline-primary");
+        channelsBtn.classList.add("btn-outline-light");
         break;
 
       case "channels":
@@ -86,9 +86,9 @@
         videos.style.display = "none";
         channels.style.display = "block";
 
-        homeBtn.classList.add("btn-outline-primary");
-        videosBtn.classList.add("btn-outline-primary");
-        channelsBtn.classList.add("btn-outline-success");
+        homeBtn.classList.add("btn-outline-light");
+        videosBtn.classList.add("btn-outline-light");
+        channelsBtn.classList.add("btn-outline-primary");
         break;
 
       default:
