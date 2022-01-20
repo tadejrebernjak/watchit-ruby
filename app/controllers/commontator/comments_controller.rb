@@ -52,15 +52,15 @@ class Commontator::CommentsController < Commontator::ApplicationController
             @comment.parent_id, @commontator_show_all
           )
 
-          format.js
+          format.js {render inline: "location.reload();" }
         else
-          format.js { render :new }
+          format.js {render inline: "location.reload();" }
         end
       else
-        format.js { render :cancel }
+        format.js {render inline: "location.reload();" }
       end
 
-      format.html { redirect_to commontable_url }
+      format.js {render inline: "location.reload();" }
     end
   end
 
@@ -70,8 +70,7 @@ class Commontator::CommentsController < Commontator::ApplicationController
     security_transgression_unless @comment.can_be_edited_by?(@commontator_user)
 
     respond_to do |format|
-      format.html { redirect_to commontable_url }
-      format.js
+      format.js {render inline: "location.reload();" }
     end
   end
 
@@ -86,17 +85,17 @@ class Commontator::CommentsController < Commontator::ApplicationController
         if @comment.save
           subscribe_mentioned if @commontator_thread.config.mentions_enabled
 
-          format.js
+          format.js {render inline: "location.reload();" }
         else
-          format.js { render :edit }
+          format.js {render inline: "location.reload();" }
         end
       else
         @comment.restore_attributes
 
-        format.js { render :cancel }
+        format.js {render inline: "location.reload();" }
       end
 
-      format.html { redirect_to commontable_url }
+      format.js {render inline: "location.reload();" }
     end
   end
 
@@ -104,12 +103,10 @@ class Commontator::CommentsController < Commontator::ApplicationController
   def delete
     security_transgression_unless @comment.can_be_deleted_by?(@commontator_user)
 
-    @comment.errors.add(:base, t('commontator.comment.errors.already_deleted')) \
-      unless @comment.delete_by(@commontator_user)
+    @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to commontable_url }
-      format.js { render :delete }
+      format.js {render inline: "location.reload();" }
     end
   end
 

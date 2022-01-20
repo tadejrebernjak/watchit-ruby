@@ -1,8 +1,14 @@
 <%= content_tag "div", class: "d-inline", id: "downvote-#{video.id}" do %>
-  <%= link_to downvote_video_path(video), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
-    <% if current_user.voted_down_on? video %>
-      <i class="fas fa-thumbs-down"></i>
-    <% else %>
+  <% if user_signed_in? %>
+    <%= link_to downvote_video_path(video), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
+      <% if current_user.voted_down_on? video %>
+        <i class="fas fa-thumbs-down"></i>
+      <% else %>
+        <i class="far fa-thumbs-down"></i>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to new_user_session_path do %>
       <i class="far fa-thumbs-down"></i>
     <% end %>
   <% end %>

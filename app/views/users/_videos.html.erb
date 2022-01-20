@@ -1,0 +1,27 @@
+<div class="row mt-5">
+  <% @videosNewest.each do |video| %>
+      <div class="col-md-4 mb-4">
+      <div class="card video-preview">
+          <%= link_to video do %>
+            <% if video.thumbnail.attached? %>
+                <%= image_tag(video.thumbnail, class: 'card-img-top') %>
+            <% else %>
+                <%= image_pack_tag("no-thumbnail.jpg", class: 'card-img-top') %>
+            <% end %>
+          <% end %>
+          <div class="card-body pt-2">
+          <%= link_to video, class: "text-dark" do %>
+          <h3 class="card-title"><%= video.title %></h5>
+          <% end %>
+          <p class="text-secondary"><%= video.description.truncate(55, separator: /\s/) %></p>
+          </div>
+          <div class="card-footer">
+          <p class="mb-0 text-secondary"><i class="far fa-eye"></i> <%= video.hits %> <i class="far fa-thumbs-up ml-1"></i> <%= video.cached_votes_up %> <i class="far fa-thumbs-down ml-1"></i> <%= video.cached_votes_down %> <i class="far fa-clock ml-1"></i> <%= time_ago_in_words(video.created_at) %> ago</p>
+          </div>
+          <%= link_to video do %>
+          <div class="video-preview-overlay"></div>
+          <% end %>
+      </div>
+      </div>
+  <% end %>
+</div>

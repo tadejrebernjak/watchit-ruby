@@ -34,6 +34,9 @@ gem 'devise'
 # Comments
 gem 'commontator'
 
+# Views
+gem 'punching_bag'
+
 # Likes Dislikes
 gem 'acts_as_votable'
 

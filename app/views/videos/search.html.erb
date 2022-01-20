@@ -1,0 +1,76 @@
+<h1 class="text-center mb-3">Results for »<%= @query %>«</h1>
+<details class="mb-4">
+    <summary>
+        <h2 class="d-inline">Channels</h2>
+    </summary>
+    <div class="p-4">
+        <div class="row">
+            <% @channels.each do |user| %>
+            <div class="col-md-3 mb-4">
+                <div class="card text-center py-3">
+                    <% if user.pfp.attached? %>
+                    <%= image_tag(user.pfp, class: 'pfp-medium mx-auto') %>
+                    <% else %>
+                    <%= image_pack_tag('default-pfp.jpg', class: 'pfp-medium mx-auto') %>
+                    <% end %>
+                    <h3><%= user.username %></h3>
+                    <h5 class="text-secondary"><%= render "users/upvotes_count", user: user %> subscribers</h5>
+                    <a href="/users/view/<%= user.id %>">    
+                        <div class="video-preview-overlay"></div>
+                    </a>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</details>
+
+<div class="d-flex align-items-center">
+    <h2 class="d-inline">Videos</h2>
+    <div class="dropdown show ml-3 align-self-center d-inline">
+        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-sort-amount-down-alt"></i> <%= @type.capitalize %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/videos/search/<%= @query %>/recent">Recent</a>
+            <a class="dropdown-item" href="/videos/search/<%= @query %>/oldest">Oldest</a>
+            <a class="dropdown-item" href="/videos/search/<%= @query %>/popular">Popular</a>
+            <a class="dropdown-item" href="/videos/search/<%= @query %>/trending">Trending</a>
+        </div>
+    </div>
+</div>
+<div class="row mb-3 p-4">
+    <% @videos.each do |video| %>
+        <div class="col-md-4 mb-4">
+            <div class="card video-preview">
+                <%= link_to video do %>
+                    <% if video.thumbnail.attached? %>
+                        <%= image_tag(video.thumbnail, class: 'card-img-top') %>
+                    <% else %>
+                        <%= image_pack_tag("no-thumbnail.jpg", class: 'card-img-top') %>
+                    <% end %>
+                <% end %>
+                <div class="card-body pt-2">
+                <%= link_to video, class: "text-dark" do %>
+                    <h3 class="card-title"><%= video.title %></h5>
+                <% end %>
+                <div class="d-flex align-items-center">
+                    <a href="/users/view/<%= video.user.id %>">
+                    <% if video.user.pfp.attached? %>
+                        <%= image_tag(video.user.pfp, class: 'pfp-small') %>
+                    <% else %>
+                        <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
+                    <% end %>
+                    </a>
+                    <a href="/users/view/<%= video.user.id %>" class="text-secondary">
+                    <h5 class="d-inline ml-2 mb-0"><%= video.user.username || 'Anonymous' %> </h5>
+                    </a>
+                </div>
+                </div>
+                <div class="card-footer">
+                <p class="mb-0 text-secondary"><i class="far fa-eye"></i> <%= video.hits %> <i class="far fa-thumbs-up ml-1"></i> <%= video.cached_votes_up %> <i class="far fa-thumbs-down ml-1"></i> <%= video.cached_votes_down %> <i class="far fa-clock ml-1"></i> <%= time_ago_in_words(video.created_at) %> ago</p>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

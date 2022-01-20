@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_121324) do
+ActiveRecord::Schema.define(version: 2022_01_18_141952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(version: 2022_01_17_121324) do
     t.index ["commontable_type", "commontable_id"], name: "index_commontator_threads_on_c_id_and_c_type", unique: true
   end
 
+  create_table "punches", id: :serial, force: :cascade do |t|
+    t.integer "punchable_id", null: false
+    t.string "punchable_type", limit: 20, null: false
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at", null: false
+    t.datetime "average_time", null: false
+    t.integer "hits", default: 1, null: false
+    t.index ["average_time"], name: "index_punches_on_average_time"
+    t.index ["punchable_type", "punchable_id"], name: "punchable_index"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -95,6 +106,13 @@ ActiveRecord::Schema.define(version: 2022_01_17_121324) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_weighted_score", default: 0
+    t.integer "cached_weighted_total", default: 0
+    t.float "cached_weighted_average", default: 0.0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -102,7 +120,6 @@ ActiveRecord::Schema.define(version: 2022_01_17_121324) do
   create_table "videos", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "views"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"

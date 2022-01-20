@@ -1,0 +1,98 @@
+<div class="card bg-dark p-3 text-white">
+  <div class="row align-items-center card-body p-3">
+    <div class="col">
+      <% if @user.pfp.attached? %>
+          <%= image_tag(@user.pfp, class: 'pfp-medium') %>
+      <% else %>
+          <%= image_pack_tag('default-pfp.jpg', class: 'pfp-medium') %>
+      <% end %>
+    </div>
+    <span class="ml-3 col-7">
+        <h2><%= @user.username %></h2>
+        <h5 class="m-0"><%= render "users/upvotes_count", user: @user %> subscribers, <%= @videos.count %> uploads</h5>
+    </span>
+    <div class="col-3 text-right">
+      <%= render "users/upvote_link", user: @user %>
+    </div>
+  </div>
+  <div class="card-footer p-2 pt-4 row align-content-center text-center">
+    <div class="col">
+      <button class="btn btn-outline-success px-5 py-2 my-2 larger-button" id="homeBtn" onclick="changeTab('home')">HOME</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-primary px-5 py-2 my-2 larger-button" id="videosBtn" onclick="changeTab('videos')">VIDEOS</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-primary px-5 py-2 my-2 larger-button" id="channelsBtn" onclick="changeTab('channels')">CHANNELS</button>
+    </div>
+  </div>
+</div>
+
+<div id="home">
+  <%= render "users/home", videosNewest: @videosNewest, videosPopular: @videosPopular, videosLiked: @videosLiked, user: @user %>
+</div>
+
+<div id="videos" style="display: none;">
+  <%= render "users/videos", videos: @videos %>
+</div>
+
+<div id="channels" style="display: none;">
+  <%= render "users/channels", channels: @channels %>
+</div>
+
+<script type="text/javascript">
+  var home = document.getElementById("home");
+  var homeBtn = document.getElementById("homeBtn");
+
+  var videos = document.getElementById("videos");
+  var videosBtn = document.getElementById("videosBtn");
+
+  var channels = document.getElementById("channels");
+  var channelsBtn = document.getElementById("channelsBtn");
+
+  var navButtons = [homeBtn, videosBtn, channelsBtn];
+
+  function changeTab(path) {
+    for (let i = 0; i < navButtons.length; i++) {
+      const button = navButtons[i];
+      
+      button.classList.remove("btn-outline-primary");
+      button.classList.remove("btn-outline-success");
+    }
+
+    switch (path) {
+      case "home":
+        home.style.display = "block";
+        videos.style.display = "none";
+        channels.style.display = "none";
+
+        homeBtn.classList.add("btn-outline-success");
+        videosBtn.classList.add("btn-outline-primary");
+        channelsBtn.classList.add("btn-outline-primary");
+        break;
+
+      case "videos":
+        home.style.display = "none";
+        videos.style.display = "block";
+        channels.style.display = "none";
+
+        homeBtn.classList.add("btn-outline-primary");
+        videosBtn.classList.add("btn-outline-success");
+        channelsBtn.classList.add("btn-outline-primary");
+        break;
+
+      case "channels":
+        home.style.display = "none";
+        videos.style.display = "none";
+        channels.style.display = "block";
+
+        homeBtn.classList.add("btn-outline-primary");
+        videosBtn.classList.add("btn-outline-primary");
+        channelsBtn.classList.add("btn-outline-success");
+        break;
+
+      default:
+        break;
+    }
+  }
+</script>

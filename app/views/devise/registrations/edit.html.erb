@@ -6,6 +6,9 @@
       <%= image_pack_tag('default-pfp.jpg', class: 'pfp-large mb-4', id: 'pfp-preview') %>
     <% end %>
     <h1><%= current_user.username %></h1>
+    <a href="/users/view/<%= current_user.id %>">
+      <button class="btn btn-primary mt-2">View Channel</button>
+    </a>
   </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

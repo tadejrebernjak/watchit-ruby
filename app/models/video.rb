@@ -2,6 +2,7 @@ class Video < ApplicationRecord
     belongs_to :user
     acts_as_commontable dependent: :destroy
     acts_as_votable dependent: :destroy
+    acts_as_punchable
 
     validates :title, presence: true
     
