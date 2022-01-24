@@ -20,7 +20,7 @@ class User < ApplicationRecord
     unless user
         user = User.create(
            email: data['email'],
-           password: nil,
+           password: Devise.friendly_token[0,20]
            username: access_token.info.name,
            socialpfp: access_token.info.image,
            uid: access_token.uid

@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update_resource(resource, params)
-    if current_user.password == nil
+    if current_user.uid != nil
       params.delete("current_password")
       resource.update_without_password(params)
     else
