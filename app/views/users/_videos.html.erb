@@ -1,6 +1,6 @@
 <div class="row mt-5">
   <% @videosNewest.each do |video| %>
-      <div class="col-md-4 mb-4">
+      <div class="col-sm-6 col-lg-4 mb-4">
       <div class="card video-preview">
           <%= link_to video do %>
             <% if video.thumbnail.attached? %>

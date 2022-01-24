@@ -6,7 +6,9 @@
             <div class="col-md-3 mb-4">
               <div class="py-3 card text-center">
                 <% if user.pfp.attached? %>
-                <%= image_tag(user.pfp, class: 'pfp-medium mx-auto') %>
+                    <%= image_tag(user.pfp, class: 'pfp-medium mx-auto') %>
+                <% elsif user.socialpfp? %>
+                    <%= image_tag(user.socialpfp, class: 'pfp-large mx-auto') %>
                 <% else %>
                 <%= image_pack_tag('default-pfp.jpg', class: 'pfp-medium mx-auto') %>
                 <% end %>

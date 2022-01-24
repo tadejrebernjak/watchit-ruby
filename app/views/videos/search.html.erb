@@ -9,9 +9,11 @@
             <div class="col-md-3 mb-4">
                 <div class="card text-center py-3">
                     <% if user.pfp.attached? %>
-                    <%= image_tag(user.pfp, class: 'pfp-medium mx-auto') %>
+                        <%= image_tag(user.pfp, class: 'pfp-medium mx-auto') %>
+                    <% elsif user.socialpfp? %>
+                        <%= image_tag(user.socialpfp, class: 'pfp-medium mx-auto') %>
                     <% else %>
-                    <%= image_pack_tag('default-pfp.jpg', class: 'pfp-medium mx-auto') %>
+                        <%= image_pack_tag('default-pfp.jpg', class: 'pfp-medium mx-auto') %>
                     <% end %>
                     <h3><%= user.username %></h3>
                     <h5 class="text-secondary"><%= render "users/upvotes_count", user: user %> subscribers</h5>
@@ -41,7 +43,7 @@
 </div>
 <div class="row mb-3 p-4">
     <% @videos.each do |video| %>
-        <div class="col-md-4 mb-4">
+        <div class="col-sm-6 col-lg-4 mb-4">
             <div class="card video-preview">
                 <%= link_to video do %>
                     <% if video.thumbnail.attached? %>
@@ -58,6 +60,8 @@
                     <a href="/users/view/<%= video.user.id %>">
                     <% if video.user.pfp.attached? %>
                         <%= image_tag(video.user.pfp, class: 'pfp-small') %>
+                    <% elsif video.user.socialpfp? %>
+                        <%= image_tag(video.user.socialpfp, class: 'pfp-small') %>    
                     <% else %>
                         <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
                     <% end %>

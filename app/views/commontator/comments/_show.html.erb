@@ -18,8 +18,10 @@
 
 <div id="commontator-comment-<%= comment.id %>-section-top" class="section top card-header text-secondary mb-2">
   <span id="commontator-comment-<%= comment.id %>-author" class="author commentator-username">
-    <% if comment.creator.pfp.attached? %>
+      <% if comment.creator.pfp.attached? %>
         <%= image_tag(comment.creator.pfp, class: 'pfp-tiny') %>
+      <% elsif comment.creator.socialpfp? %>
+        <%= image_tag(comment.creator.socialpfp, class: 'pfp-tiny') %>
       <% else %>
         <%= image_pack_tag('default-pfp.jpg', class: 'pfp-tiny') %>
       <% end %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'users/registrations' }
   get 'users/view/:id' => 'users#show'
   patch "users/view/:id/upvote", to: "users#upvote"
   get 'videos/search/:query/:type', to: "videos#search"

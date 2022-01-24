@@ -1,7 +1,7 @@
 <h2>Trending</h2>
 <div class="row mb-3">
   <% @videosTrending.each do |video| %>
-    <div class="col-md-4 mb-4">
+    <div class="col-sm-6 col-lg-4 mb-4">
       <div class="card video-preview">
         <%= link_to video do %>
           <% if video.thumbnail.attached? %>
@@ -18,6 +18,8 @@
             <a href="/users/view/<%= video.user.id %>">
               <% if video.user.pfp.attached? %>
                 <%= image_tag(video.user.pfp, class: 'pfp-small') %>
+              <% elsif video.user.socialpfp? %>
+                <%= image_tag(video.user.socialpfp, class: 'pfp-small') %>
               <% else %>
                 <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
               <% end %>
@@ -38,7 +40,7 @@
 <h2>Most popular</h2>
 <div class="row mb-3">
   <% @videosPopular.each do |video| %>
-    <div class="col-md-4 mb-4">
+    <div class="col-sm-6 col-lg-4 mb-4">
       <div class="card video-preview">
         <%= link_to video do %>
           <% if video.thumbnail.attached? %>
@@ -55,6 +57,8 @@
             <a href="/users/view/<%= video.user.id %>">
               <% if video.user.pfp.attached? %>
                 <%= image_tag(video.user.pfp, class: 'pfp-small') %>
+              <% elsif video.user.socialpfp? %>
+                <%= image_tag(video.user.socialpfp, class: 'pfp-small') %>
               <% else %>
                 <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
               <% end %>
@@ -75,7 +79,7 @@
 <h2>Newest uploads</h2>
 <div class="row mb-3">
   <% @videos.limit(10).each do |video| %>
-    <div class="col-md-4 mb-4">
+    <div class="col-sm-6 col-lg-4 mb-4">
       <div class="card video-preview">
         <%= link_to video do %>
           <% if video.thumbnail.attached? %>
@@ -92,6 +96,8 @@
             <a href="/users/view/<%= video.user.id %>">
               <% if video.user.pfp.attached? %>
                 <%= image_tag(video.user.pfp, class: 'pfp-small') %>
+              <% elsif video.user.socialpfp? %>
+                <%= image_tag(video.user.socialpfp, class: 'pfp-small') %>
               <% else %>
                 <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
               <% end %>

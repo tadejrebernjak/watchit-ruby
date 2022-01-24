@@ -9,6 +9,8 @@
       <a href="/users/view/<%= @video.user.id %>">
         <% if @video.user.pfp.attached? %>
           <%= image_tag(@video.user.pfp, class: 'pfp-small') %>
+        <% elsif @video.user.socialpfp? %>
+            <%= image_tag(@video.user.socialpfp, class: 'pfp-small') %>
         <% else %>
           <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
         <% end %>
