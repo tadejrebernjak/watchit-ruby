@@ -1,32 +1,165 @@
 body {
-    position: relative;
-    padding-bottom: 250px;
+  position: relative;
+  padding-bottom: 250px;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.bg-lightdark {
+  background-color: #3d454c !important;
+}
+
+@media screen and (min-width: 1000) {
+  .head-content {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+  }
+}
+
+.logo {
+  max-height: 75px;
+}
+
+.search-input {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  width: 300px;
+}
+
+.search-input:focus {
+  background-color: transparent;
+  color: rgb(5, 154, 212);
+  border: 2px solid rgb(5, 154, 212);
+  width: 300px;
+}
+
+.search-btn {
+  border-width: 1px;
+}
+
+.search-btn:hover {
+  background-color: transparent;
+  color: rgb(5, 154, 212);
+  border-color: rgb(5, 154, 212);
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    height: 200px;
-    width: 100%;
-    background-color: #40464d;
+  position: absolute;
+  bottom: 0;
+  height: 200px;
+  width: 100%;
+  background-color: #40464d;
 }
 
 .header-links > a {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 .larger-button {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 .larger-link {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 .form-container {
-    min-width: 500px;
+  width: 700px;
+  max-width: 100%;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.pfp-large {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.pfp-medium {
+  border-radius: 50%;
+  height: 125px;
+  width: 125px;
+  object-fit: cover;
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.pfp-small {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.pfp-tiny {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.video-max-height {
+  max-height: 650px;
+}
+
+.votes-container {
+  font-size: 2rem;
+}
+
+.upvotes-container * {
+  color: rgb(0, 226, 0);
+}
+
+.downvotes-container * {
+  color: red;
+}
+
+.votes-container a:hover {
+  text-decoration: none;
+}
+
+.video-preview {
+  position: relative;
+  z-index: 1;
+}
+
+.video-preview-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
+  transition: 200ms;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.video-preview-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 100;
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
 }

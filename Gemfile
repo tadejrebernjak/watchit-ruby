@@ -34,8 +34,23 @@ gem 'devise'
 # Comments
 gem 'commontator'
 
-# Comments voting
+# Views
+gem 'punching_bag'
+
+# Likes Dislikes
 gem 'acts_as_votable'
+
+# Active Storage Validation
+gem 'active_storage_validations'
+
+# Thumbnails processing
+gem 'image_processing', '~> 1.2'
+gem "mini_magick"
+
+# Google Login
+
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

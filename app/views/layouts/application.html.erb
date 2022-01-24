@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Watchit</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,21 +12,42 @@
   </head>
 
   <body>
-    <header class="row navbar navbar-dark bg-dark d-flex flex-row flex-wrap align-items-center justify-content-between p-4">
-      <%= link_to root_path, class: 'header-logo col-1 m-4 text-light text-center' do %>
-        <h1>WatchITonRails</h1>
-      <% end %>
-      <div class="header-links col-4 d-flex justify-content-end align-items-center">
-        <%= display_session_links %>
+    <div class="head-content">
+      <header class="card-body row navbar navbar-dark bg-dark d-flex flex-row flex-wrap align-items-center justify-content-between p-2">
+        <%= link_to root_path, class: 'header-logo col m-2 text-light text-left' do %>
+          <%= image_pack_tag('logo.png', class: 'logo') %>
+        <% end %>
+        <div class="header-links col d-flex justify-content-end align-items-center">
+          <%= display_session_links %>
+        </div>
+      </header>
+      <div class="card-footer search-bar-container row navbar navbar-secondary bg-lightdark py-3 d-flex flex-row flex-wrap align-items-center justify-content-center">
+        <input type="text" class="search-input form-control mr-2 p-3" placeholder="Search" id="searchInput" />
+        <button class="btn btn-outline-light search-btn" id="searchButton"><i class="fas fa-search"></i></button>
+        <script>
+          document.getElementById("searchButton").onclick = function() {
+            let query = document.getElementById("searchInput").value;
+            if (query.trim() != "") {
+              window.location = `/videos/search/${query.trim()}/recent`;
+            }
+          }
+        </script>
       </div>
-    </header>
+    </div>
     <div class="container p-3">
       <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <p class="alert p-0"><%= alert %></p>
       <%= yield %>
     </div>
-    <footer>
-    
+    <footer class="d-flex flex-column align-items-center justify-content-center text-white p-4 text-center">
+      <h5>Gems used:</h5>
+      <p><a href="https://github.com/heartcombo/devise" target="_blank" class="text-white">Devise</a> | 
+      <a href="https://github.com/lml/commontator" target="_blank" class="text-white">Commontator</a> | 
+      <a href="https://github.com/biola/punching_bag" target="_blank" class="text-white">Punching Bag</a> | 
+      <a href="https://github.com/ryanto/acts_as_votable" target="_blank" class="text-white">Acts As Votable</a> | 
+      <a href="https://github.com/igorkasyanchuk/active_storage_validations" target="_blank" class="text-white">Active Storage Validations</a></p>
+      <h5>Icons from:</h5>
+      <p><a href="https://fontawesome.com/" target="_blank" class="text-white">Fontawesome</a></p>
     </footer>
   </body>
 </html>

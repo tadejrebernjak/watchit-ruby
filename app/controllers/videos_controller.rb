@@ -3,12 +3,57 @@ class VideosController < ApplicationController
 
   # GET /videos or /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.order('created_at DESC')
+    @videosPopular = Video.most_hit.limit(5)
+    @videosTrending = Video.most_hit(3.day.ago, 5)
+  end
+
+  def search
+    @query = params[:query]
+    @type = params[:type]
+
+    @videos = Video.where("LOWER (title) like ?", "%" + @query.downcase + "%")
+    @channels = User.where("LOWER (username) like ?", "%" + @query.downcase + "%").order(cached_votes_up: :desc)
+
+    case @type
+    when "recent"
+      @videos = @videos.order('created_at DESC')
+    when "oldest"
+      @videos = @videos.order('created_at ASC')
+    when "popular"
+      @videos = @videos.most_hit
+    when "trending"
+      @videos = @videos.most_hit(1.day.ago, nil)
+    else
+      @type = "recent"
+      @videos = @videos.order('created_at DESC')
+    end
+  end
+
+  def upvote
+    @video = Video.find(params[:id])
+    if current_user.voted_up_on? @video
+      @video.unvote_by current_user
+    else
+      @video.upvote_by current_user
+    end
+    render "vote.js.erb"
+  end
+
+  def downvote
+    @video = Video.find(params[:id])
+    if current_user.voted_down_on? @video
+      @video.unvote_by current_user
+    else
+      @video.downvote_by current_user
+    end
+    render "vote.js.erb"
   end
 
   # GET /videos/1 or /videos/1.json
   def show
     commontator_thread_show(@video)
+    @video.punch(request)
   end
 
   # GET /videos/new
@@ -66,6 +111,6 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title, :description, :thumbnail, :file, :views)
+      params.require(:video).permit(:title, :description, :thumbnail, :videoFile)
     end
 end

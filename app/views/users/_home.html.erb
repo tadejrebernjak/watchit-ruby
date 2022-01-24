@@ -1,6 +1,6 @@
-<h2>Trending</h2>
+<h2 class="mt-4 mb-2">Newest uploads</h2>
 <div class="row mb-3">
-  <% @videosTrending.each do |video| %>
+  <% @videosNewest.each do |video| %>
     <div class="col-sm-6 col-lg-4 mb-4">
       <div class="card video-preview">
         <%= link_to video do %>
@@ -12,32 +12,22 @@
         <% end %>
         <div class="card-body pt-2">
           <%= link_to video, class: "text-dark" do %>
-            <h4 class="card-title"><%= video.title %></h4>
+          <h4 class="card-title"><%= video.title %></h4>
           <% end %>
-          <div class="d-flex align-items-center">
-            <a href="/users/view/<%= video.user.id %>">
-              <% if video.user.pfp.attached? %>
-                <%= image_tag(video.user.pfp, class: 'pfp-small') %>
-              <% elsif video.user.socialpfp? %>
-                <%= image_tag(video.user.socialpfp, class: 'pfp-small') %>
-              <% else %>
-                <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
-              <% end %>
-            </a>
-            <a href="/users/view/<%= video.user.id %>" class="text-secondary">
-              <h5 class="d-inline ml-2 mb-0"><%= video.user.username || 'Anonymous' %> </h5>
-            </a>
-          </div>
+          <p class="text-secondary"><%= video.description.truncate(55, separator: /\s/) %></p>
         </div>
         <div class="card-footer">
           <p class="mb-0 text-secondary"><i class="far fa-eye"></i> <%= video.hits %> <i class="far fa-thumbs-up ml-1"></i> <%= video.cached_votes_up %> <i class="far fa-thumbs-down ml-1"></i> <%= video.cached_votes_down %> <i class="far fa-clock ml-1"></i> <%= time_ago_in_words(video.created_at) %> ago</p>
         </div>
+        <%= link_to video do %>
+          <div class="video-preview-overlay"></div>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
 
-<h2>Most popular</h2>
+<h2 class="mt-4 mb-12">Most popular</h2>
 <div class="row mb-3">
   <% @videosPopular.each do |video| %>
     <div class="col-sm-6 col-lg-4 mb-4">
@@ -51,34 +41,26 @@
         <% end %>
         <div class="card-body pt-2">
           <%= link_to video, class: "text-dark" do %>
-            <h4 class="card-title"><%= video.title %></h4>
+          <h4 class="card-title"><%= video.title %></h4>
           <% end %>
-          <div class="d-flex align-items-center">
-            <a href="/users/view/<%= video.user.id %>">
-              <% if video.user.pfp.attached? %>
-                <%= image_tag(video.user.pfp, class: 'pfp-small') %>
-              <% elsif video.user.socialpfp? %>
-                <%= image_tag(video.user.socialpfp, class: 'pfp-small') %>
-              <% else %>
-                <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
-              <% end %>
-            </a>
-            <a href="/users/view/<%= video.user.id %>" class="text-secondary">
-              <h5 class="d-inline ml-2 mb-0"><%= video.user.username || 'Anonymous' %> </h5>
-            </a>
-          </div>
+          <p class="text-secondary"><%= video.description.truncate(55, separator: /\s/) %></p>
         </div>
         <div class="card-footer">
           <p class="mb-0 text-secondary"><i class="far fa-eye"></i> <%= video.hits %> <i class="far fa-thumbs-up ml-1"></i> <%= video.cached_votes_up %> <i class="far fa-thumbs-down ml-1"></i> <%= video.cached_votes_down %> <i class="far fa-clock ml-1"></i> <%= time_ago_in_words(video.created_at) %> ago</p>
         </div>
+        <%= link_to video do %>
+          <div class="video-preview-overlay"></div>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
 
-<h2>Newest uploads</h2>
+<% if @videosLiked.length > 0 then %>
+    <h2 class="mt-4 mb-12">Videos liked by <%= user.username %></h2>
+<% end %>
 <div class="row mb-3">
-  <% @videos.limit(10).each do |video| %>
+  <% @videosLiked.each do |video| %>
     <div class="col-sm-6 col-lg-4 mb-4">
       <div class="card video-preview">
         <%= link_to video do %>
@@ -89,20 +71,20 @@
           <% end %>
         <% end %>
         <div class="card-body pt-2">
-          <%= link_to video, class: "text-dark" do %>
-            <h4 class="card-title"><%= video.title %></h4>
+          <%= link_to video do %>
+          <h4 class="card-title"><%= video.title %></h4>
           <% end %>
           <div class="d-flex align-items-center">
             <a href="/users/view/<%= video.user.id %>">
               <% if video.user.pfp.attached? %>
                 <%= image_tag(video.user.pfp, class: 'pfp-small') %>
-              <% elsif video.user.socialpfp? %>
-                <%= image_tag(video.user.socialpfp, class: 'pfp-small') %>
+              <% elsif user.socialpfp? %>
+                <%= image_tag(user.socialpfp, class: 'pfp-small') %>
               <% else %>
                 <%= image_pack_tag('default-pfp.jpg', class: 'pfp-small') %>
               <% end %>
             </a>
-            <a href="/users/view/<%= video.user.id %>" class="text-secondary">
+            <a href="/users/view/<%= video.user.id %>">
               <h5 class="d-inline ml-2 mb-0"><%= video.user.username || 'Anonymous' %> </h5>
             </a>
           </div>

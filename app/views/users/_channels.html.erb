@@ -1,0 +1,27 @@
+<h2 class="mt-4 mb-2">Featured channels</h2>
+<% if @channels.length > 0 then %>
+    <div class="p-4">
+        <div class="row">
+            <% @channels.each do |user| %>
+            <div class="col-md-3 mb-4">
+              <div class="py-3 card text-center">
+                <% if user.pfp.attached? %>
+                    <%= image_tag(user.pfp, class: 'pfp-medium mx-auto') %>
+                <% elsif user.socialpfp? %>
+                    <%= image_tag(user.socialpfp, class: 'pfp-medium mx-auto') %>
+                <% else %>
+                <%= image_pack_tag('default-pfp.jpg', class: 'pfp-medium mx-auto') %>
+                <% end %>
+                <h3><%= user.username %></h3>
+                <h5 class="text-secondary"><%= render "users/upvotes_count", user: user %> subscribers</h5>
+                <a href="/users/view/<%= user.id %>">    
+                    <div class="video-preview-overlay"></div>
+                </a>
+              </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+<% else %>
+    <p>User has not subscribed to any channels yet</p>
+<% end %>

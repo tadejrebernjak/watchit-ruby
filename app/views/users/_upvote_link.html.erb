@@ -1,0 +1,21 @@
+<%= content_tag "div", id: "upvote-#{user.id}" do %>
+  <% if user_signed_in? %>
+    <% if current_user.id == user.id %>
+      <%= link_to edit_user_registration_path do %>
+        <button class="btn btn-secondary larger-button">Edit Profile</button>
+      <% end %>
+    <% elsif current_user.voted_up_on? user %>
+      <%= link_to upvote_user_path(user), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
+        <button class="btn btn-success larger-button">Subscribed</button>
+      <% end %>
+    <% else %>
+      <%= link_to upvote_user_path(user), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
+        <button class="btn btn-danger larger-button">Subscribe</button>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to new_user_session_path do %>
+      <button class="btn btn-danger larger-button">Sign in</button>
+    <% end %>
+  <% end %>
+<% end %>

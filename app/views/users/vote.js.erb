@@ -1,0 +1,2 @@
+document.getElementById("upvote-<%= @user.id %>").innerHTML = "<%= j render "users/upvote_link", user: @user %>";
+document.getElementById("upvotes-count-<%= @user.id %>").innerHTML = "<%= j render "users/upvotes_count", user: @user %>";
