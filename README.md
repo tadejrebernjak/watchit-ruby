@@ -1,11 +1,11 @@
 # WatchITonRails
 
-A video sharing website inspired by YouTube and made with Ruby on Rails
-Online version available at https://watchit-on-rails.herokuapp.com
+* A video sharing website inspired by YouTube and made with Ruby on Rails
+* Online version available at https://watchit-on-rails.herokuapp.com
 
 ## Description
 
-This website includes uploading, searching and watching videos, liking/disliking videos, subscribing to other users, commenting on videos and replying to comments and supporting Google authentication.
+This website includes uploading, searching and watching videos, liking/disliking videos, subscribing to other users, commenting on videos and replying to comments and supports Google authentication
 
 ## Getting Started
 
