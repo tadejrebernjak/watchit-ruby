@@ -57,5 +57,5 @@ rails s
 
 ### Video Thumbnail Processing
 
-* https://github.com/janko/image_processing
-* https://github.com/minimagick/minimagick
+* Image Processing - https://github.com/janko/image_processing
+* Minimagick - https://github.com/minimagick/minimagick
