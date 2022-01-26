@@ -35,8 +35,27 @@ rake db:migrate
 
 ### Executing program
 
-* Start the rails serber
+* Start the rails server
 ```
 rails s
 ```
 * You may now open the project in your browser on http://localhost:3000
+
+## Gems used
+
+### Authentication
+
+* Devise - https://github.com/heartcombo/devise
+* OmniAuth Google OAuth2 - https://github.com/zquestz/omniauth-google-oauth2
+* OmniAuth - Rails CSRF Protection - https://github.com/cookpad/omniauth-rails_csrf_protection
+
+### Features
+
+* Commontator - https://github.com/lml/commontator
+* Punching Bag - https://github.com/biola/punching_bag
+* Acts As Votable - https://github.com/ryanto/acts_as_votable
+
+### Video Thumbnail Processing
+
+* https://github.com/janko/image_processing
+* https://github.com/minimagick/minimagick
